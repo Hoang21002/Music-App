@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "musicappdatabase": {
+      "hosting": {
+        "app": [
+          "musicappdatabase"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "musicappdatabase"
+  }
+}
