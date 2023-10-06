@@ -12,6 +12,11 @@
   font-size: 20px;
   line-height: 26px;
 }
+.gird {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px; /* Khoảng cách giữa các cột */
+}
 
 #container p {
   font-size: 16px;
