@@ -1,24 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit,ViewChild } from '@angular/core';
 import { ApiService } from '../API/api.service';
-
+import { Swiper } from 'swiper/types';
 @Component({
   selector: 'app-start',
   templateUrl: './start.page.html',
-  styleUrls: ['./start.page.scss'],
+  styleUrls: ['./start.page.scss', '../app.component.scss'],
+
 })
 export class StartPage implements OnInit {
 
-  imgAlbums : any[]=[]
-  nameAlbums : any[]=[]
+  imgAlbums: any[] = []
+  nameAlbums: any[] = []
   cards: any[] = [];
   constructor(private apiservice: ApiService) { }
 
 
   ngOnInit() {
+
     Promise.all([this.GetDataImgAlbums(), this.GetDataNamesAlbums()])
-    .then(() => this.CreateCard());
+      .then(() => this.CreateCard());
+    this.GetDataNamesAlbums()
+
   }
-  async GetDataImgAlbums(): Promise<any>{
+  changeslide(){
+    
+  }
+  async GetDataImgAlbums(): Promise<any> {
     const data = await this.apiservice.GetDataImgAlbums()
     for (let index = 0; index < 8; index++) {
       this.imgAlbums.push(data[index]);
@@ -26,15 +33,14 @@ export class StartPage implements OnInit {
     console.log(this.imgAlbums)
     // console.log(data)
   }
-  async GetDataNamesAlbums(){
+  async GetDataNamesAlbums() {
     const data = await this.apiservice.GetDataNamesAlbums()
     for (let index = 0; index < 8; index++) {
       this.nameAlbums.push(data[index]);
     }
     console.log(this.nameAlbums)
-
   }
-  async CreateCard(){
+  async CreateCard() {
     this.cards = this.imgAlbums.map((img, index) => ({
       img: img,
       title: this.nameAlbums[index]
