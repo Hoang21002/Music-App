@@ -1,40 +1,68 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from '../API/api.service';
+import { AppComponent } from '../app.component';
 import { Swiper } from 'swiper/types';
 import { InfiniteScrollCustomEvent } from '@ionic/angular';
+
 @Component({
   selector: 'app-start',
   templateUrl: './start.page.html',
   styleUrls: ['./start.page.scss', '../app.component.scss'],
-
 })
 export class StartPage implements OnInit {
   imgAlbums: any[] = []
   nameAlbums: any[] = []
   cards: any[] = [];
-  genres:any[]=[]
-  // isSelect: boolean = false
-  isSelected: boolean[] = Array(this.cards.length).fill(false);
-  constructor(private apiservice: ApiService) { }
+  genres: any[] = []
+  isSelected: boolean[] = [];
+  showtabs: boolean = false
+  count: number = 0
+  isModalOpen: boolean = false;
+
+  constructor(private appcomponent: AppComponent, private apiservice: ApiService) {
+  }
 
 
   async ngOnInit() {
-
-    Promise.all([this.GetDataImgAlbums(), this.GetDataNamesAlbums(),this.GetDataGenre()])
+    Promise.all([this.GetDataImgAlbums(), this.GetDataNamesAlbums(), this.GetDataGenre()])
       .then(() => this.CreateCard());
+
+    this.SelectCards()
+
   }
 
-  AddClass(index:number){
+  SelectCards() {
+    if (this.cards.length > 0) {
+      this.isSelected = Array(this.cards.length).fill(false);
+    }
+  }
+
+  AddClass(index: number) {
     this.isSelected[index] = !this.isSelected[index];
   }
   Nextslide() {
     const swiperEl = document.querySelector('swiper-container');
     swiperEl?.swiper.slideNext()
+    this.count += 1
+    this.ShowModal(this.count)
+    console.log(this.count)
   }
-
+  ShowModal(value: number) {
+    if (value >= 3) {
+      this.count = 2
+      this.isModalOpen = true
+    }
+    else if (value < 0) {
+      this.count = 0
+    }
+  }
   Prevslide() {
     const swiperEl = document.querySelector('swiper-container');
     swiperEl?.swiper.slidePrev()
+    this.count -= 1
+    this.ShowModal(this.count)
+    console.log(this.count)
+
   }
   async GetDataImgAlbums(): Promise<any> {
     const data = await this.apiservice.GetDataImgAlbums()
@@ -51,12 +79,12 @@ export class StartPage implements OnInit {
     }
     console.log(this.nameAlbums)
   }
-  async GetDataGenre(){
+  async GetDataGenre() {
     const data = await this.apiservice.GetDataGenre()
     for (let index = 0; index < data.length; index++) {
       this.genres.push(data[index]);
     }
-    
+
   }
   async CreateCard() {
     this.cards = this.imgAlbums.map((img, index) => ({

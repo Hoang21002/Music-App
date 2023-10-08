@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 export class ApiService implements OnInit {
   dataAll: any[] = [];
   dataName : any[] = []
+
   constructor() { }
   async ngOnInit() {
     await this.GetApi()

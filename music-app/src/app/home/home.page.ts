@@ -48,7 +48,5 @@ export class HomePage implements OnInit {
     const data = await this.apiservice.GetDataSongs()
     console.log(data)
   }
-  
-
 }
 

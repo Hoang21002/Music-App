@@ -1,7 +1,7 @@
 .gird-4 {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
+    row-gap: 15px;
 }
 
 .gird-2 {
@@ -29,7 +29,12 @@ ion-button {
     background: #9988CB;
     border-radius: 8px;
 }
-
+.main-container-app{
+    background: url(../assets/img/background-app.jpg) no-repeat center/cover;
+    height: 100vh;
+    padding-top: 24px;
+    padding-bottom: 46px;
+}
 .cards {
     display: flex;
     flex-direction: column;

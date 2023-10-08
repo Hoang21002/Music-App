@@ -6,34 +6,91 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <swiper-container pagination="true" style="">
-    <swiper-slide>
-      <div class="container">
-        <h1>Your Favorite Genre</h1>
-        <div class="content-container">
-          <div class="gird-4">
-            <div *ngFor="let v of cards; let i = index">
-              <div class="cards" [class.choice]="isSelected[i]" (click)="AddClass(i)">
-                <div class="img-card" [style.background-image]="'url(' + v.img + ')'"></div>
-                <div class="title-card">{{v.title}}</div>
+<!-- <ion-content>
+  <div class="container">
+    <div class="">
+      
+    </div>
+  </div>
+</ion-content> -->
+
+<ion-content >
+  <div class="main-container-app">
+    <swiper-container pagination="true">
+      <swiper-slide>
+        <div class="container">
+          <h1>Your Favorite Genre</h1>
+          <div class="content-container">
+            <div class="gird-4">
+              <div *ngFor="let v of cards; let i = index">
+                <div class="cards" [class.choice]="isSelected[i]" (click)="AddClass(i)">
+                  <div class="img-card" [style.background-image]="'url(' + v.img + ')'"></div>
+                  <div class="title-card">{{v.title}}</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </swiper-slide>
-    <swiper-slide>Slide 2</swiper-slide>
-    <swiper-slide>Slide 3</swiper-slide>
-  </swiper-container>
-  <div class="gird-2 ">
-    <ion-button class="swiper-button-prev" (click)="Prevslide()">
-      <ion-icon slot="start" name="chevron-back-outline"></ion-icon>
-      Back
-    </ion-button>
-    <ion-button class="swiper-button-next" (click)="Nextslide()">
-      <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
-      Next
-    </ion-button>
+      </swiper-slide>
+      <swiper-slide>
+        <div class="container">
+          <h1>Your Favourite Artist</h1>
+          <div class="content-container">
+            <div class="gird-4">
+              <div *ngFor="let v of cards; let i = index">
+                <div class="cards" [class.choice]="isSelected[i]" (click)="AddClass(i)">
+                  <div class="img-card" [style.background-image]="'url(' + v.img + ')'"></div>
+                  <div class="title-card">{{v.title}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </swiper-slide>
+      <swiper-slide>
+        <div class="container">
+          <h1>Your Favourite Album</h1>
+          <div class="content-container">
+            <div class="gird-4">
+              <div *ngFor="let v of cards; let i = index">
+                <div class="cards" [class.choice]="isSelected[i]" (click)="AddClass(i)">
+                  <div class="img-card" [style.background-image]="'url(' + v.img + ')'"></div>
+                  <div class="title-card">{{v.title}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </swiper-slide>
+    </swiper-container>
+    <div class="gird-2 ">
+      <ion-button class="swiper-button-prev" (click)="Prevslide()">
+        <ion-icon slot="start" name="chevron-back-outline"></ion-icon>
+        Back
+      </ion-button>
+      <ion-button class="swiper-button-next" (click)="Nextslide()">
+        <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+        Next
+      </ion-button>
+    </div>
   </div>
+  <ion-modal [isOpen]="isModalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Modal</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="isModalOpen=!isModalOpen" >Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni illum quidem recusandae ducimus quos
+          reprehenderit. Veniam, molestias quos, dolorum consequuntur nisi deserunt omnis id illo sit cum qui. Eaque,
+          dicta.
+        </p>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>

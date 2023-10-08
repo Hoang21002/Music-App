@@ -9,6 +9,7 @@ import { StartPageRoutingModule } from './start-routing.module';
 import { StartPage } from './start.page';
 
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
 @NgModule({
   imports: [
     CommonModule,
