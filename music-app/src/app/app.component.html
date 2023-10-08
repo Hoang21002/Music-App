@@ -1,7 +1,7 @@
-<ion-app>
+<ion-app *ngIf="true">
   <ion-router-outlet></ion-router-outlet>
-  <!-- <ion-tabs *ngIf="showTabs">
-    <ion-tab-bar slot="bottom">
+  <ion-tabs >
+    <ion-tab-bar *ngIf="showTabs" slot="bottom">
       <ion-tab-button tab="home">
         <ion-icon name="home-outline"></ion-icon>
         Home
@@ -19,6 +19,6 @@
         Playlists
       </ion-tab-button>
     </ion-tab-bar>
-  </ion-tabs> -->
+  </ion-tabs>
 </ion-app>
 

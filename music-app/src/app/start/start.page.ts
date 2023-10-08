@@ -3,7 +3,7 @@ import { ApiService } from '../API/api.service';
 import { AppComponent } from '../app.component';
 import { Swiper } from 'swiper/types';
 import { InfiniteScrollCustomEvent } from '@ionic/angular';
-
+import { Route, Router } from '@angular/router';
 @Component({
   selector: 'app-start',
   templateUrl: './start.page.html',
@@ -15,11 +15,12 @@ export class StartPage implements OnInit {
   cards: any[] = [];
   genres: any[] = []
   isSelected: boolean[] = [];
-  showtabs: boolean = false
+  // showtabs: boolean = false
   count: number = 0
   isModalOpen: boolean = false;
-
-  constructor(private appcomponent: AppComponent, private apiservice: ApiService) {
+  isShowPageChoice: boolean = false
+  isShowPageStart: boolean = true
+  constructor(private router:Router,private appcomponent: AppComponent, private apiservice: ApiService) {
   }
 
 
@@ -31,6 +32,13 @@ export class StartPage implements OnInit {
 
   }
 
+  GoPageChoice(){
+    this.isShowPageChoice = true
+    this.isShowPageStart = false
+  }
+  GoPageHome(){
+    this.router.navigate(['/home'])
+  }
   SelectCards() {
     if (this.cards.length > 0) {
       this.isSelected = Array(this.cards.length).fill(false);

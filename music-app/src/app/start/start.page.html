@@ -6,15 +6,24 @@
   </ion-toolbar>
 </ion-header>
 
-<!-- <ion-content>
+<ion-content *ngIf="isShowPageStart">
   <div class="container">
-    <div class="">
-      
+    <div class="img-start">
+      <img style="width: 100%;display: block;" src="../../assets/img/img-start.jpg" alt="">
     </div>
+    <h4 style="margin-bottom: 32px;" class="heading4 text-center">Hey Just A Moment, We Have Something Interesting For You</h4>
+    <ion-button (click)="GoPageChoice()" expand="block" style="margin-bottom: 18px;">
+      <ion-icon slot="start" name="chevron-forward-outline"></ion-icon>
+      Let’s go
+    </ion-button>
+    <ion-button (click)="GoPageHome()" expand="block" style="--background: #FEFEFF;color: #ED1173;">
+      <ion-icon style="color: #ED1173;" slot="start" name="close-circle-outline"></ion-icon>
+      Skip
+    </ion-button>
   </div>
-</ion-content> -->
+</ion-content>
 
-<ion-content >
+<ion-content *ngIf="isShowPageChoice">
   <div class="main-container-app">
     <swiper-container pagination="true">
       <swiper-slide>
@@ -80,7 +89,7 @@
         <ion-toolbar>
           <ion-title>Modal</ion-title>
           <ion-buttons slot="end">
-            <ion-button (click)="isModalOpen=!isModalOpen" >Close</ion-button>
+            <ion-button (click)="isModalOpen=!isModalOpen">Close</ion-button>
           </ion-buttons>
         </ion-toolbar>
       </ion-header>

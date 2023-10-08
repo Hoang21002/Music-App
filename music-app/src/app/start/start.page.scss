@@ -6,10 +6,28 @@
   height: 12px;
   border-radius: 8px;
 }
-.content-container{
+
+.content-container {
   height: 70vh;
   overflow: scroll;
   margin-bottom: 36px;
+}
+
+.heading4 {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.img-start {
+  width: 100%;
+  margin-top: 8px;
+  border-radius: 12px;
+  margin-bottom: 48px;
 }
 
 .custom-parent {
