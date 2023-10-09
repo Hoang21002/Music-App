@@ -1,0 +1,51 @@
+<ion-header>
+</ion-header>
+
+<ion-content class="ion-padding" style="background-color: aqua;">
+  <img src="../../assets/logo.png" class="logo" />
+  <div class="ion-margin-top">
+    <form (ngSubmit)="onSubmit()">
+      <div class="ion-text-center">
+        <h2>Sign in</h2>
+
+      </div>
+      <!-- <ion-button expand="block" >you can login with</ion-button>
+      <div class="ion-text-center">
+        <p>Lets get started</p>
+      </div> -->
+<div>
+  <ion-item>
+    <!-- <ion-input placeholder="Email" class="primary-input"></ion-input> -->
+    <ion-icon name="mail-outline">|</ion-icon>
+    <ion-input type="email" name="email" [(ngModel)]="email" placeholder=" Email"></ion-input>
+  </ion-item>
+  <ion-item>
+    <!-- <ion-input placeholder="Password" type="password" class="primary-input"></ion-input> -->
+    <ion-icon name="key-outline">|</ion-icon>
+    <ion-input type="password" name="password" [(ngModel)]="password" placeholder=" Password"></ion-input>
+  </ion-item>
+</div>
+
+      <div class="ion-margin-top ion-text-right forget" routerLink="/forgot-password">
+        <a>Forgot Password?</a>
+      </div>
+
+      <div class="ion-margin-top">
+        <!-- <ion-button expand="block" routerLink="/main">LOGIN</ion-button> -->
+        <ion-button expand="block" type="submit">LOGIN</ion-button>
+
+      </div>
+
+      <div class="ion-margin-top ion-text-center">
+        <a routerLink="/home">Close</a>
+      </div>
+<div class="ion-margin-top ion-text-center">
+  <ion-item >
+    <!-- <ion-input placeholder="Password" type="password" class="primary-input"></ion-input> -->
+    <p>Do not have an account</p>
+    <a routerLink="/register">Sign Up</a>
+  </ion-item>
+</div>
+    </form>
+  </div>
+</ion-content>
