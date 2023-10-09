@@ -12,7 +12,23 @@ export class ApiService implements OnInit {
 
   constructor() { }
   async ngOnInit() {
+    await this.Run()
+  }
+
+  async Run(){
     await this.GetApi()
+    await this.GetDataAll()
+    await this.GetDataNameSinger()
+    await this.GetDataNameSinger()
+    await this.GetDataGenre()
+    await this.GetDataImgSinger()
+    await this.GetDataAlbums()
+    await this.GetDataImgAlbums()
+    await this.GetDataNamesAlbums()
+    await this.GetDataSongs()
+    await this.GetDataGenreSongs()
+    await this.GetUrlMp3()
+    await this.GetDataImgSongs()
   }
   async GetApi(): Promise<any> {
     try {
