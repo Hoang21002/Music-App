@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Howl } from 'howler';
 import { ApiService } from '../API/api.service';
+import { ModalController } from '@ionic/angular';
 
 export interface Track {
   name: string;
@@ -18,12 +19,17 @@ export class PlaylistPage implements OnInit {
   isModalOpen = false;
   urlMp3: any[] = []
 
+  dataAll:any[]=[]
+
+  songsOfAlbums:any
 
   imgSongUni:any;
   urlmp3SongUni :any;
   nameSongUni:any;
 
-
+  nameAlbums: any[] = []
+  imgAlbums: any[] = []
+  nameSinger: any[] = []
 
   playlist: Track[] = [
     {
@@ -47,31 +53,88 @@ export class PlaylistPage implements OnInit {
   imgSong: any[] = []
   nameSong: any[] = []
   showModal: boolean = false
+  showModalFirst: boolean = false
   cardsMusic: { urlmp3: string; imgsong: number; namesong: string }[] = [];
+  cardsPlaylist: { urlmp3: string; imgsong: number; namesong: string }[] = [];
 
-  constructor(private apiservice: ApiService) { }
+
+  constructor(private apiservice: ApiService,private modalController: ModalController) { }
 
   Test(index:number){
     // this.nameSong[index]=this.nameSongUni
     // this.urlMp3[index]=this.urlmp3SongUni
     // this.imgSongUni[index]=this.imgSongUni
   }
-
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: PlaylistPage,
+    });
+    return await modal.present();
+  }
+  
+  // Hàm để ẩn modal mà không mất hoàn toàn
+  async hideModal() {
+    const modal = await this.modalController.getTop();
+    if (modal) {
+      modal.hidden = true; // Sử dụng thuộc tính hidden
+    }
+  }
   async ngOnInit() {
     await Promise.all([this.CreateFunc()])
       .then(() => this.RunCreateCard());
-    this.GetAllData()
-    console.log(this.cardsMusic)
-    console.log(this.cardsMusic[1])
+    await this.GetAllData()
 
+
+  }
+
+  TakeNameAlbums(index:number){
+    const dataAlbums = this.cardsPlaylist[index]
+    const nameAlbum = dataAlbums.imgsong
+    const song = this.getSongsByAlbumTitle(this.dataAll,nameAlbum)
+    this.songsOfAlbums = song
+    this.showModalFirst = true
+    console.log(nameAlbum)
+    console.log(dataAlbums)
+    console.log(song)
+  }
+// Lấy Nhạc theo tên albums
+  getSongsByAlbumTitle(artistData: any, albumTitle: any): any[] | null {
+    for (let i = 0; i < artistData.length; i++) {
+      let albums = artistData[i].albums;
+      for (let j = 0; j < albums.length; j++) {
+        if (albums[j].title === albumTitle) {
+          return albums[j].songs;
+        }
+      }
+    }
+    return null; // Trả về null nếu không tìm thấy album
   }
   async CreateFunc() {
     await this.GetUrlMp3()
     await this.GetDataImgSongs()
     await this.GetDataSongsAlbums()
+    await this.GetDataNamesAlbums()
+    await this.GetDataImgAlbums()
+    await this.GetDataNameSinger()
   }
   async RunCreateCard(): Promise<any> {
     await this.CreateCard(this.cardsMusic, this.imgSong, this.urlMp3, this.nameSong)
+    await this.CreateCard(this.cardsPlaylist, this.nameAlbums, this.imgAlbums, this.nameSinger)
+  
+  }
+  async GetDataNamesAlbums(): Promise<any> {
+    const data = await this.apiservice.GetDataNamesAlbums()
+    this.nameAlbums = data
+  }
+  async GetDataImgAlbums(): Promise<any> {
+    const data = await this.apiservice.GetDataImgAlbums()
+    for (let index = 0; index < 8; index++) {
+      this.imgAlbums.push(data[index]);
+    }
+  }
+  async GetDataNameSinger(): Promise<any> {
+    const data = await this.apiservice.GetDataNameSinger()
+    this.nameSinger = data
   }
   async GetDataSongsAlbums(): Promise<any> {
     const data = await this.apiservice.GetDataSongs()
@@ -88,6 +151,7 @@ export class PlaylistPage implements OnInit {
 
   async GetAllData() {
     const data = await this.apiservice.GetDataAll()
+    this.dataAll = data
   }
 
   setOpen(isOpen: boolean) {

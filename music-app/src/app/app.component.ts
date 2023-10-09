@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { ModalController } from '@ionic/angular';
 import { register } from 'swiper/element/bundle';
-
 register();
 
 @Component({
@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   showTabs: boolean = true;
   excludedPaths: string[] = ['start']; // Hide Tabs
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
+  constructor(private modalController: ModalController,private router: Router, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
     this.router.events
