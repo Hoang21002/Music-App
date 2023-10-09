@@ -1,13 +1,82 @@
-<ion-header [translucent]="true">
+<!-- src/app/home/home.page.html -->
+
+<ion-header>
   <ion-toolbar>
-    <ion-title>playlist</ion-title>
+    <ion-title>
+      Music App
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">playlist</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let track of cardsMusic; let i = index" (click)="start(track,i)">
+      {{ track.namesong }}
+    </ion-item>
+  </ion-list>
+
+  <ion-card *ngIf="activeTrack">
+    <ion-card-header>
+      {{ activeTrack.namesong }}
+    </ion-card-header>
+    <ion-card-content>
+      <ion-range [(ngModel)]="progress" (ionChange)="seek($event)" [disabled]="!isPlaying"></ion-range>
+      <ion-label>{{ formatTime(currentTime) }} / {{ formatTime(totalTime) }}</ion-label>
+      <ion-button (click)="togglePlayer(isPlaying)">
+        {{ isPlaying ? 'Pause' : 'Play' }}
+      </ion-button>
+      <ion-range [(ngModel)]="volume" (ionChange)="setVolume($event)" min="0" max="1" step="0.01"></ion-range>
+      <ion-label>Volume: {{ volume | percent }}</ion-label>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<ion-content class="ion-padding">
+  <ion-button expand="block" (click)="setOpen(true)">Open</ion-button>
+  <ion-modal [isOpen]="showModal">
+    <ng-template>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button (click)="showModal = false">
+            <ion-icon name="chevron-down-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+          <ion-button (click)="setOpen(false)">
+            <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+      <ion-content class="ion-padding">
+        <div class="container">
+          <div class="img-start">
+            <img style="width: 100%;display: block;" src="../../assets/img/img-start.jpg" alt="">
+          </div>
+          <div class="infor-music">
+            <div class="">
+              <p style="margin-bottom: 8px;" class="heading4">Name music</p>
+              <p class="Subtitle2">Singer</p>
+            </div>
+            <ion-icon style="font-size: 24px;" name="heart-circle-outline"></ion-icon>
+          </div>
+
+
+          <ion-range [(ngModel)]="progress" (ionChange)="seek($event)" [disabled]="!isPlaying"></ion-range>
+          <div class="" style="margin-bottom: 28px;display: flex; justify-content: space-between;align-items: center;">
+            <label for="">{{ formatTime(currentTime) }}</label>
+            <label for="">{{ formatTime(totalTime) }}</label>
+          </div>
+          <!-- <ion-label>{{ formatTime(currentTime) }} / {{ formatTime(totalTime) }}</ion-label> -->
+          <div class="control-music">
+            <ion-icon style="font-size: 36px;" name="shuffle-outline"></ion-icon>
+            <ion-icon style="font-size: 36px;" name="arrow-back-circle-outline"></ion-icon>
+            <ion-icon (click)="togglePlayer(isPlaying)"  style="font-size: 56px;color: #ED1173;" name="play-circle-outline"></ion-icon>
+            <ion-icon style="font-size: 36px;" name="arrow-forward-circle-outline"></ion-icon>
+            <ion-icon style="font-size: 36px;" name="shuffle-outline"></ion-icon>
+          </div>
+
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>

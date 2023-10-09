@@ -10,6 +10,16 @@
     column-gap: 16px;
 }
 
+.heading4 {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+}
+
+.text-center {
+    text-align: center;
+}
+
 .gird-3 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -49,4 +59,34 @@ ion-button {
     font-style: normal;
     font-weight: 400;
     margin: 0;
+}
+
+.control-music {
+    column-gap: 24px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.infor-music {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+ion-range {
+    --bar-background: #FEFEFF;
+    --bar-background-active: #7F6ABE;
+    --bar-height: 2px;
+    --bar-border-radius: 8px;
+    --knob-background: #7F6ABE;
+    --knob-size: 12px;
+    --pin-background: #7F6ABE;
+    --pin-color: #7F6ABE;
+}
+
+.hidden-modal {
+    display: none;
 }

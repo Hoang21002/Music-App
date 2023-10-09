@@ -14,6 +14,7 @@ export class HomePage implements OnInit {
   nameAlbums: any[] = []
   nameSinger: any[] = []
   genreSong: any[] = []
+  urlMp3: any[] = []
   uniqeuGenre: any[] = []
   playLists: any[] = []
   nameSong: any[] = []
@@ -25,12 +26,11 @@ export class HomePage implements OnInit {
   async ngOnInit() {
     await Promise.all([this.CreateFunc()])
       .then(() => this.RunCreateCard());
-
   }
 
   async CreateFunc() {
     await this.GetDataAll()
-
+    await this.GetUrl()
     await this.GetDataAlbums()
 
     await this.GetDataImgAlbums()
@@ -69,6 +69,11 @@ export class HomePage implements OnInit {
     // let uniqueArray: string[] = [...new Set(this.dataAll)];
     // console.log(uniqueArray);
   }
+  async GetUrl(): Promise<any> {
+    const data = await this.apiservice.GetUrlMp3()
+    console.log(data)
+
+  }
   GetPlayLists(array: any[]) {
     for (let index = 0; index < 6; index++) {
       this.playLists.push(array[index]);
@@ -96,6 +101,7 @@ export class HomePage implements OnInit {
     const data = await this.apiservice.GetDataSongs()
     this.nameSong = data
   }
+
   async GetDataGenreSongs(): Promise<any> {
     const data = await this.apiservice.GetDataGenreSongs()
     this.genreSong = data

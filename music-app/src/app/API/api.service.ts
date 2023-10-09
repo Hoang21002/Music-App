@@ -46,6 +46,7 @@ export class ApiService implements OnInit {
     const dataGenre =  this.GetValues('genre',dataAll)
     return dataGenre
   }
+
   // Get Img Singer
   async GetDataImgSinger(){
     const dataAll = await this.GetApi()
@@ -82,6 +83,12 @@ export class ApiService implements OnInit {
     const getValues = this.GetValuesAlbums('songs',dataAlbums)
     const GenreSongs = this.GetValuesAlbums('genre',getValues)
     return GenreSongs
+  }
+  async GetUrlMp3(){
+    const dataAlbums = await this.GetDataAlbums()
+    const getValues = this.GetValuesAlbums('songs',dataAlbums)
+    const urlMp3 = this.GetValuesAlbums('urlmp3',getValues)
+    return urlMp3
   }
   async GetDataImgSongs(){
     const dataAlbums = await this.GetDataAlbums()
