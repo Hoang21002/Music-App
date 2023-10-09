@@ -8,16 +8,16 @@
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
+  <div class="container">
     <swiper-container slides-per-view="4" space-between="8">
-      <swiper-slide *ngFor="let value of uniqeuGenreMusic">
-        <ion-button expand="block" class="generButton">
+      <swiper-slide *ngFor="let value of uniqeuGenre">
+        <ion-button style="--background:#FEFEFF;--background-activated:#ED1173;--border-width:1px;--border-style:solid;--border-color:#ED1173;--color:#ED1173;--color-activated:#FEFEFF" expand="block" class="generButton">
           {{value}}
         </ion-button>
       </swiper-slide>
     </swiper-container>
 
-    <div class="gird-2" >
+    <div class="gird-2">
       <div *ngFor="let i of playLists">
         <ion-item>
           <ion-thumbnail slot="start">
@@ -41,23 +41,19 @@
       </swiper-slide>
     </swiper-container>
     <h4>New Release</h4>
-    <div class="playlist">
-      <ion-fab slot="fixed"  horizontal="end" [edge]="true">
-        <ion-fab-button>
-          <ion-icon name="chevron-down-circle"></ion-icon>
-        </ion-fab-button>
-        <ion-fab-list side="bottom">
-          <ion-fab-button>
-            <ion-icon name="document"></ion-icon>
-          </ion-fab-button>
-          <ion-fab-button>
-            <ion-icon name="color-palette"></ion-icon>
-          </ion-fab-button>
-          <ion-fab-button>
-            <ion-icon name="globe"></ion-icon>
-          </ion-fab-button>
-        </ion-fab-list>
-      </ion-fab>
+    <div class="playlist" *ngFor="let v of cardsPlaylist">
+      <div class="box-playlist">
+        <div class="box-playlist-left">
+          <ion-thumbnail slot="start">
+            <img alt="Silhouette of mountains" [src]="v.imgsong" />
+          </ion-thumbnail>
+          <div class="">
+            <p class="Subtitle2" >{{v.namesong}}</p>
+            <p class="Caption" >{{v.genre}}</p>
+          </div>
+        </div>
+        <ion-icon slot="end" name="ellipsis-vertical-outline"></ion-icon>
+      </div>
     </div>
   </div>
 </ion-content>

@@ -5,29 +5,30 @@ import { ApiService } from '../API/api.service';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss','../app.component.scss'],
+  styleUrls: ['home.page.scss', '../app.component.scss'],
 })
 export class HomePage implements OnInit {
   dataAll: any[] = []
-  imgAlbums : any[]=[]
-  genreMusic: any[]=[]
-  genreSong:any[]=[]
-  uniqeuGenreMusic:any[] = []
-  playLists:any[]=[]
-  nameSong:any[]=[]
+  imgAlbums: any[] = []
+  genreMusic: any[] = []
+  nameAlbums: any[] = []
+  nameSinger: any[] = []
+  genreSong: any[] = []
+  uniqeuGenre: any[] = []
+  playLists: any[] = []
+  nameSong: any[] = []
   constructor(private apiservice: ApiService) { }
   cards: any[] = [];
-  imgSong:any[]=[]
+  imgSong: any[] = []
   cardsMusic: { imgsong: string; genre: number; namesong: string }[] = [];
+  cardsPlaylist: { imgsong: string; genre: number; namesong: string }[] = [];
   async ngOnInit() {
-    Promise.all([this.GetDataImgSongs(), this.GetDataSongsAlbums(), this.GetDataGenreSongs()])
-    .then(() => this.CreateCardMusic());
+    await Promise.all([this.CreateFunc()])
+      .then(() => this.RunCreateCard());
 
-    await this.Run()
-    
   }
 
-  async Run(): Promise <any>{
+  async CreateFunc() {
     await this.GetDataAll()
 
     await this.GetDataAlbums()
@@ -36,25 +37,30 @@ export class HomePage implements OnInit {
 
     await this.GetDataGenre()
 
-    // await this.GetDataNamesAlbums()
+    await this.GetDataNameSinger()
+
+    await this.GetDataNamesAlbums()
+
     await this.GetDataSongsAlbums()
 
     await this.GetDataGenreSongs()
 
     await this.GetDataImgSongs()
+  }
+  async RunCreateCard(): Promise<any> {
 
-    await this.GetDataSongsAlbums()
+    await this.CreateCard(this.cardsMusic, this.nameSong, this.imgSong, this.genreSong)
 
-    await this.CreateCardMusic()
+    await this.CreateCard(this.cardsPlaylist, this.nameAlbums, this.imgAlbums, this.nameSinger)
   }
   async GetDataGenre() {
     const data = await this.apiservice.GetDataGenre()
     for (let index = 0; index < data.length; index++) {
       this.genreMusic.push(data[index]);
     }
-    this.uniqeuGenreMusic = [...new Set(this.genreMusic)];
-    this.GetPlayLists(this.uniqeuGenreMusic)
-    this.uniqeuGenreMusic.unshift('All')
+    this.uniqeuGenre = [...new Set(this.genreMusic)];
+    this.GetPlayLists(this.uniqeuGenre)
+    this.uniqeuGenre.unshift('All')
   }
   async GetDataAll(): Promise<any> {
     const data = await this.apiservice.GetDataAll()
@@ -63,47 +69,51 @@ export class HomePage implements OnInit {
     // let uniqueArray: string[] = [...new Set(this.dataAll)];
     // console.log(uniqueArray);
   }
-  GetPlayLists(array: any[]){
+  GetPlayLists(array: any[]) {
     for (let index = 0; index < 6; index++) {
-      this.playLists.push(array[index]);    
+      this.playLists.push(array[index]);
     }
   }
-  async GetDataAlbums(): Promise<any>{
+  async GetDataAlbums(): Promise<any> {
     const data = await this.apiservice.GetDataAlbums()
   }
-  async GetDataImgAlbums(): Promise<any>{
+  async GetDataImgAlbums(): Promise<any> {
     const data = await this.apiservice.GetDataImgAlbums()
     for (let index = 0; index < 8; index++) {
       this.imgAlbums.push(data[index]);
     }
   }
   // Get Name Albums
-  async GetDataNamesAlbums(): Promise<any>{
+  async GetDataNameSinger(): Promise<any> {
+    const data = await this.apiservice.GetDataNameSinger()
+    this.nameSinger = data
+  }
+  async GetDataNamesAlbums(): Promise<any> {
     const data = await this.apiservice.GetDataNamesAlbums()
+    this.nameAlbums = data
   }
-  async GetDataSongsAlbums(): Promise<any>{
+  async GetDataSongsAlbums(): Promise<any> {
     const data = await this.apiservice.GetDataSongs()
-    this.nameSong=data
+    this.nameSong = data
   }
-  async GetDataGenreSongs(): Promise<any>{
+  async GetDataGenreSongs(): Promise<any> {
     const data = await this.apiservice.GetDataGenreSongs()
     this.genreSong = data
   }
-  async GetDataImgSongs(): Promise<any>{
+  async GetDataImgSongs(): Promise<any> {
     const data = await this.apiservice.GetDataImgSongs()
     this.imgSong = data
   }
-  async CreateCardMusic() {
-    for (let i = 0; i < this.nameSong.length; i++) {
+  async CreateCard(cards: any, arrayName: any, arrayImg: any, arrayTitle: any) {
+    for (let i = 0; i < arrayName.length; i++) {
       const Songs = {
-        imgsong: this.imgSong[i],
-        namesong: this.nameSong[i],
-        genre: this.genreSong[i],
+        imgsong: arrayImg[i],
+        namesong: arrayName[i],
+        genre: arrayTitle[i],
       };
       // Đưa đối tượng vào mảng people
-      this.cardsMusic.push(Songs);
+      cards.push(Songs);
     }
-    console.log(this.cardsMusic)
   }
 }
 

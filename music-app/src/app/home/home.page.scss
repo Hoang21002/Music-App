@@ -4,6 +4,33 @@
   gap: 10px;
   /* Khoảng cách giữa các cột */
 }
+.playlist{
+  padding: 8px 12px 8px 12px;
+  background-color: #8A8A8A;
+  margin-bottom: 16px;
+  border-radius: 4px;
+}
+ion-button {
+  --background: #F2F0F9;
+}
+.container{
+  margin: 0 16px 0 16px;}
+
+.item-native {
+  background: #8A8A8A;
+  color: #fff;
+}
+.box-playlist{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.box-playlist-left{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 14px;
+}
 
 .cards {
   display: flex;

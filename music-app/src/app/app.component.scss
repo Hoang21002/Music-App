@@ -25,13 +25,28 @@ ion-button {
     --background: #ED1173;
 }
 
-.choice{
+.choice {
     background: #9988CB;
     border-radius: 8px;
 }
-.main-container-app{
+
+.main-container-app {
     background: url(../assets/img/background-app.jpg) no-repeat center/cover;
     height: 100%;
     padding-top: 24px;
     padding-bottom: 46px;
+}
+
+.Subtitle2 {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    margin: 0;
+}
+
+.Caption {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    margin: 0;
 }
