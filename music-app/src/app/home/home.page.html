@@ -1,8 +1,7 @@
-
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <h4 >Good Morning, Naomi</h4>
+      <h4>Good Morning, Naomi</h4>
       <ion-avatar slot="end">
         <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
       </ion-avatar>
@@ -10,30 +9,34 @@
   </ion-header>
 
   <div id="container">
-    <div class="gird" >
-      <div class=" " *ngFor="let i of imgAlbums">
-        <img [src]="i" alt="">
+    <swiper-container slides-per-view="4" space-between="8">
+      <swiper-slide *ngFor="let value of uniqeuGenreMusic">
+        <ion-button expand="block" class="generButton">
+          {{value}}
+        </ion-button>
+      </swiper-slide>
+    </swiper-container>
+
+    <div class="gird-2" >
+      <div *ngFor="let i of playLists">
+        <ion-item>
+          <ion-thumbnail slot="start">
+            <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+          </ion-thumbnail>
+          <ion-label>{{i}}</ion-label>
+        </ion-item>
       </div>
     </div>
+    <swiper-container slides-per-view="2" space-between="8">
+      <swiper-slide *ngFor="let v of cardsMusic">
+        <ion-card>
+          <img alt="Silhouette of mountains" [style.background-image]="'url(' + v.imgsong + ')'" />
+          <ion-card-header>
+            <ion-card-title>{{v.namesong}}</ion-card-title>
+            <ion-card-subtitle>{{v.genre}}</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+      </swiper-slide>
+    </swiper-container>
   </div>
 </ion-content>
-<!-- <ion-tabs >
-  <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="home">
-      <ion-icon name="home-outline"></ion-icon>
-      Home
-    </ion-tab-button>
-    <ion-tab-button tab="discover">
-      <ion-icon name="compass-outline"></ion-icon>
-      Discover
-    </ion-tab-button>
-    <ion-tab-button tab="register">
-      <ion-icon name="timer-outline"></ion-icon>
-      Recently
-    </ion-tab-button>
-    <ion-tab-button tab="playlist">
-      <ion-icon name="list-outline"></ion-icon>
-      Playlists
-    </ion-tab-button>
-  </ion-tab-bar>
-</ion-tabs> -->

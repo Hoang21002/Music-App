@@ -75,9 +75,19 @@ export class ApiService implements OnInit {
     const dataAlbums = await this.GetDataAlbums()
     const getValues = this.GetValuesAlbums('songs',dataAlbums)
     const NameSongs = this.GetValuesAlbums('title',getValues)
-
     return NameSongs
-    
+  }
+  async GetDataGenreSongs(){
+    const dataAlbums = await this.GetDataAlbums()
+    const getValues = this.GetValuesAlbums('songs',dataAlbums)
+    const GenreSongs = this.GetValuesAlbums('genre',getValues)
+    return GenreSongs
+  }
+  async GetDataImgSongs(){
+    const dataAlbums = await this.GetDataAlbums()
+    const getValues = this.GetValuesAlbums('songs',dataAlbums)
+    const ImgSongs = this.GetValuesAlbums('imgsong',getValues)
+    return ImgSongs
   }
   // Funtion loop use get value in albums
   GetValuesAlbums(key: string,array: any){
