@@ -31,8 +31,8 @@
           <h1>Your Favorite Genre</h1>
           <div class="content-container">
             <div class="gird-4">
-              <div *ngFor="let v of cards; let i = index">
-                <div class="cards" [class.choice]="isSelected[i]" (click)="AddClass(i)">
+              <div *ngFor="let v of cardsGenre; let i = index">
+                <div class="cards" [class.choice]="isSelectedGenre[i]" (click)="AddClass(i,isSelectedGenre)">
                   <div class="img-card" [style.background-image]="'url(' + v.img + ')'"></div>
                   <div class="title-card">{{v.title}}</div>
                 </div>
@@ -46,8 +46,8 @@
           <h1>Your Favourite Artist</h1>
           <div class="content-container">
             <div class="gird-4">
-              <div *ngFor="let v of cards; let i = index">
-                <div class="cards" [class.choice]="isSelected[i]" (click)="AddClass(i)">
+              <div *ngFor="let v of cardsArtist; let i = index">
+                <div class="cards" [class.choice]="isSelectedArtist[i]" (click)="AddClass(i,isSelectedArtist)">
                   <div class="img-card" [style.background-image]="'url(' + v.img + ')'"></div>
                   <div class="title-card">{{v.title}}</div>
                 </div>
@@ -61,8 +61,8 @@
           <h1>Your Favourite Album</h1>
           <div class="content-container">
             <div class="gird-4">
-              <div *ngFor="let v of cards; let i = index">
-                <div class="cards" [class.choice]="isSelected[i]" (click)="AddClass(i)">
+              <div *ngFor="let v of cardsAlbums; let i = index">
+                <div class="cards" [class.choice]="isSelectedAlbums[i]" (click)="AddClass(i,isSelectedAlbums)">
                   <div class="img-card" [style.background-image]="'url(' + v.img + ')'"></div>
                   <div class="title-card">{{v.title}}</div>
                 </div>

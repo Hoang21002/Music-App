@@ -12,9 +12,15 @@ import { Route, Router } from '@angular/router';
 export class StartPage implements OnInit {
   imgAlbums: any[] = []
   nameAlbums: any[] = []
-  cards: any[] = [];
+  nameSinger:any[]=[]
+  imgSinger:any[]=[]
+  cardsGenre: any[] = [];
+  cardsArtist:any[]=[]
+  cardsAlbums:any[]=[]
   genres: any[] = []
-  isSelected: boolean[] = [];
+  isSelectedGenre: boolean[] = [];
+  isSelectedArtist: boolean[] = [];
+  isSelectedAlbums: boolean[] = [];
   // showtabs: boolean = false
   count: number = 0
   isModalOpen: boolean = false;
@@ -25,13 +31,19 @@ export class StartPage implements OnInit {
 
 
   async ngOnInit() {
-    Promise.all([this.GetDataImgAlbums(), this.GetDataNamesAlbums(), this.GetDataGenre()])
-      .then(() => this.CreateCard());
+    Promise.all([this.GetDataImgAlbums(), this.GetDataNamesAlbums(), this.GetDataGenre(),this.GetNameSinger(),this.GetImgSinger()])
+      .then(() => this.Run());
 
-    this.SelectCards()
 
   }
-
+  async Run(): Promise<any>{
+    this.cardsGenre =await this.CreateCard(this.imgAlbums,this.genres)
+    this.cardsArtist =await this.CreateCard(this.imgSinger,this.nameSinger)
+    this.cardsAlbums =await this.CreateCard(this.imgAlbums,this.nameAlbums)
+    this.SelectCards(this.cardsGenre,this.isSelectedGenre)
+    this.SelectCards(this.cardsArtist,this.isSelectedArtist)
+    this.SelectCards(this.cardsAlbums,this.isSelectedAlbums)
+  }
   GoPageChoice(){
     this.isShowPageChoice = true
     this.isShowPageStart = false
@@ -39,14 +51,14 @@ export class StartPage implements OnInit {
   GoPageHome(){
     this.router.navigate(['/home'])
   }
-  SelectCards() {
-    if (this.cards.length > 0) {
-      this.isSelected = Array(this.cards.length).fill(false);
+  SelectCards(cards:any,isSelected :any) {
+    if (cards.length > 0) {
+      isSelected = Array(cards.length).fill(false);
     }
   }
 
-  AddClass(index: number) {
-    this.isSelected[index] = !this.isSelected[index];
+  AddClass(index: number,isSelected :any) {
+    isSelected[index] = !isSelected[index];
   }
   Nextslide() {
     const swiperEl = document.querySelector('swiper-container');
@@ -92,12 +104,27 @@ export class StartPage implements OnInit {
     for (let index = 0; index < data.length; index++) {
       this.genres.push(data[index]);
     }
-
   }
-  async CreateCard() {
-    this.cards = this.imgAlbums.map((img, index) => ({
+
+  async GetNameSinger(){
+    const data = await this.apiservice.GetDataNameSinger()
+    this.nameSinger = data
+  }
+
+  async GetImgSinger(){
+    const data = await this.apiservice.GetDataImgSinger()
+    this.imgSinger = data
+  }
+  // async CreateCard(object: any, array: any) {
+  //   this.cards = this.imgAlbums.map((img, index) => ({
+  //     img: img,
+  //     title: this.genres[index]
+  //   }));
+  // }
+  async CreateCard(arrayimg: any,arrayGenre: any) {
+    return  arrayimg.map((img: any, index: string | number) => ({
       img: img,
-      title: this.genres[index]
+      title: arrayGenre[index]
     }));
   }
 }

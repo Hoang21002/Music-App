@@ -29,7 +29,28 @@
   border-radius: 12px;
   margin-bottom: 48px;
 }
+.cards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 8px;
+  padding: 12px;
 
+  .img-card {
+      width: 3.75rem;
+      height: 5rem;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+  }
+
+  .title-card {
+      text-align: center;
+      font-size: 0.625rem;
+      height: 20px;
+  }
+}
 .custom-parent {
   padding-left: 16px;
   padding-right: 16px;

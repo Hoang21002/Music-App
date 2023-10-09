@@ -27,16 +27,37 @@
         </ion-item>
       </div>
     </div>
+    <h4>Your Programs</h4>
     <swiper-container slides-per-view="2" space-between="8">
       <swiper-slide *ngFor="let v of cardsMusic">
-        <ion-card>
-          <img alt="Silhouette of mountains" [style.background-image]="'url(' + v.imgsong + ')'" />
-          <ion-card-header>
-            <ion-card-title>{{v.namesong}}</ion-card-title>
-            <ion-card-subtitle>{{v.genre}}</ion-card-subtitle>
-          </ion-card-header>
-        </ion-card>
+        <div class="cards">
+          <div class="img-card">
+            <img style="border-radius: 8px;" [src]="v.imgsong" alt="">
+          </div>
+          <!-- <div class="img-card" [style.background-image]="'url(' + v.imgsong + ')'"></div> -->
+          <div class="sub-title-card">{{v.namesong}}</div>
+          <div class="title-card">{{v.genre}}</div>
+        </div>
       </swiper-slide>
     </swiper-container>
+    <h4>New Release</h4>
+    <div class="playlist">
+      <ion-fab slot="fixed"  horizontal="end" [edge]="true">
+        <ion-fab-button>
+          <ion-icon name="chevron-down-circle"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-list side="bottom">
+          <ion-fab-button>
+            <ion-icon name="document"></ion-icon>
+          </ion-fab-button>
+          <ion-fab-button>
+            <ion-icon name="color-palette"></ion-icon>
+          </ion-fab-button>
+          <ion-fab-button>
+            <ion-icon name="globe"></ion-icon>
+          </ion-fab-button>
+        </ion-fab-list>
+      </ion-fab>
+    </div>
   </div>
 </ion-content>

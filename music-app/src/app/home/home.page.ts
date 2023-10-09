@@ -23,26 +23,30 @@ export class HomePage implements OnInit {
     Promise.all([this.GetDataImgSongs(), this.GetDataSongsAlbums(), this.GetDataGenreSongs()])
     .then(() => this.CreateCardMusic());
 
-    this.GetDataAll()
-
-    this.GetDataAlbums()
-
-    this.GetDataImgAlbums()
-
-    this.GetDataGenre()
-
-    // this.GetDataNamesAlbums()
-    this.GetDataSongsAlbums()
-
-    this.GetDataGenreSongs()
-
-    this.GetDataImgSongs()
-
-    this.GetDataSongsAlbums()
-
-    this.CreateCardMusic()
+    await this.Run()
+    
   }
 
+  async Run(): Promise <any>{
+    await this.GetDataAll()
+
+    await this.GetDataAlbums()
+
+    await this.GetDataImgAlbums()
+
+    await this.GetDataGenre()
+
+    // await this.GetDataNamesAlbums()
+    await this.GetDataSongsAlbums()
+
+    await this.GetDataGenreSongs()
+
+    await this.GetDataImgSongs()
+
+    await this.GetDataSongsAlbums()
+
+    await this.CreateCardMusic()
+  }
   async GetDataGenre() {
     const data = await this.apiservice.GetDataGenre()
     for (let index = 0; index < data.length; index++) {
