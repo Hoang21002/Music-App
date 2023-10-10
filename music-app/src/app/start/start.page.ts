@@ -49,8 +49,12 @@ export class StartPage implements OnInit {
     this.isShowPageStart = false
   }
   GoPageHome(){
-    this.router.navigate(['/home'])
+    this.isModalOpen = false
+    setTimeout(() => {
+      this.router.navigate(['/home'])
+    }, 1000);
   }
+
   SelectCards(cards:any,isSelected :any) {
     if (cards.length > 0) {
       isSelected = Array(cards.length).fill(false);
@@ -65,7 +69,7 @@ export class StartPage implements OnInit {
     swiperEl?.swiper.slideNext()
     this.count += 1
     this.ShowModal(this.count)
-    console.log(this.count)
+
   }
   ShowModal(value: number) {
     if (value >= 3) {
@@ -81,7 +85,6 @@ export class StartPage implements OnInit {
     swiperEl?.swiper.slidePrev()
     this.count -= 1
     this.ShowModal(this.count)
-    console.log(this.count)
 
   }
   async GetDataImgAlbums(): Promise<any> {
@@ -89,7 +92,7 @@ export class StartPage implements OnInit {
     for (let index = 0; index < data.length; index++) {
       this.imgAlbums.push(data[index]);
     }
-    console.log(this.imgAlbums)
+
     // console.log(data)
   }
   async GetDataNamesAlbums() {
@@ -97,8 +100,9 @@ export class StartPage implements OnInit {
     for (let index = 0; index < data.length; index++) {
       this.nameAlbums.push(data[index]);
     }
-    console.log(this.nameAlbums)
+
   }
+
   async GetDataGenre() {
     const data = await this.apiservice.GetDataGenre()
     for (let index = 0; index < data.length; index++) {

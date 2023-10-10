@@ -88,17 +88,19 @@
       <ion-header>
         <ion-toolbar>
           <ion-title>Modal</ion-title>
-          <ion-buttons slot="end">
+          <ion-buttons slot="start">
             <ion-button (click)="isModalOpen=!isModalOpen">Close</ion-button>
           </ion-buttons>
+
         </ion-toolbar>
       </ion-header>
       <ion-content class="ion-padding">
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni illum quidem recusandae ducimus quos
-          reprehenderit. Veniam, molestias quos, dolorum consequuntur nisi deserunt omnis id illo sit cum qui. Eaque,
-          dicta.
-        </p>
+       <div class="" style="margin: auto;">
+        <h1>Enjoy the music!</h1>
+        <ion-button (click)="GoPageHome()" expand="block" fill="clear" shape="round">
+          Let's Go
+        </ion-button>
+       </div>
       </ion-content>
     </ng-template>
   </ion-modal>
