@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Howl } from 'howler';
 import { ApiService } from '../API/api.service';
-
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss', '../app.component.scss'],
+  selector: 'app-recent',
+  templateUrl: './recent.page.html',
+  styleUrls: ['./recent.page.scss','../app.component.scss'],
 })
-export class HomePage implements OnInit {
+export class RecentPage implements OnInit {
+
+  constructor(private apiservice: ApiService) { }
 
   player: Howl | any = null;
   showModal: boolean = false
@@ -31,7 +32,6 @@ export class HomePage implements OnInit {
   uniqeuGenre: any[] = []
   playLists: any[] = []
   nameSong: any[] = []
-  constructor(private apiservice: ApiService) { }
   cards: any[] = [];
   imgSong: any[] = []
   cardsMusic: { imgsong: string; genre: number; namesong: string;urlmp3:string }[] = [];

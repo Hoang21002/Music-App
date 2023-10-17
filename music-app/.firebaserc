@@ -6,9 +6,16 @@
           "musicappdatabase"
         ]
       }
+    },
+    "databasemusicapp": {
+      "hosting": {
+        "app": [
+          "databasemusicapp"
+        ]
+      }
     }
   },
   "projects": {
-    "default": "musicappdatabase"
+    "default": "databasemusicapp"
   }
 }

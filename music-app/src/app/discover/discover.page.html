@@ -1,13 +1,24 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>discover</ion-title>
-  </ion-toolbar>
+<ion-header collapse="condense">
+  <ion-searchbar show-cancel-button="focus" placeholder="Show on Focus"></ion-searchbar>
 </ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">discover</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="container">
+    <swiper-container slides-per-view="3" space-between="8">
+      <swiper-slide *ngFor="let v of cardsAlbums">
+        <div class="cards" >
+          <div class="img-card" [style.background-image]="'url(' + v.img + ')'"></div>
+          <div class="title-card">{{v.title}}</div>
+        </div>
+      </swiper-slide>
+    </swiper-container>
+    <h4 class="Heading4">Categories</h4>
+    <div class="gird-2" >
+      <div class="box-categori"*ngFor="let v of cardsGenre">
+        <p>{{v.title}}</p>
+        <div class="img-cate">
+          <img style="border-radius: 8px;" [src]="v.img" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
 </ion-content>
