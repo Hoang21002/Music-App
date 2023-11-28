@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { DiscoverPageRoutingModule } from './discover-routing.module';
 
 import { DiscoverPage } from './discover.page';
-
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 @NgModule({
   imports: [
     CommonModule,
@@ -15,6 +15,8 @@ import { DiscoverPage } from './discover.page';
     IonicModule,
     DiscoverPageRoutingModule
   ],
-  declarations: [DiscoverPage]
+  declarations: [DiscoverPage],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+
 })
 export class DiscoverPageModule {}

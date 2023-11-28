@@ -1,0 +1,18 @@
+
+<ion-content [fullscreen]="true">
+  <h1>Recent</h1>
+  <div class="playlist" *ngFor="let v of cardsPlaylist">
+    <div  class="box-playlist">
+      <div class="box-playlist-left">
+        <ion-thumbnail slot="start">
+          <img alt="Silhouette of mountains" [src]="v.imgsong" />
+        </ion-thumbnail>
+        <div class="">
+          <p class="Subtitle2" >{{v.namesong}}</p>
+          <p class="Caption" >{{v.genre}}</p>
+        </div>
+      </div>
+      <ion-icon slot="end" name="ellipsis-vertical-outline"></ion-icon>
+    </div>
+  </div>
+</ion-content>

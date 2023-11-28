@@ -1,0 +1,23 @@
+.img-start {
+    width: 100%;
+    margin-top: 8px;
+    border-radius: 12px;
+    margin-bottom: 48px;
+  }
+  .playlist{
+    padding: 8px 12px 8px 12px;
+    background-color: #8A8A8A;
+    margin-bottom: 16px;
+    border-radius: 4px;
+  }
+  .box-playlist{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .box-playlist-left{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 14px;
+  }

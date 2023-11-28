@@ -4,14 +4,14 @@
 
 export const environment = {
   firebase: {
-    projectId: 'musicappdatabase',
-    appId: '1:1030106513519:web:0914da2879019d0f65cd9a',
-    storageBucket: 'musicappdatabase.appspot.com',
+    projectId: 'databasemusicapp',
+    appId: '1:461205208850:web:50e6e62211745dad42fdcb',
+    storageBucket: 'databasemusicapp.appspot.com',
     locationId: 'us-central',
-    apiKey: 'AIzaSyDd25MDi11Vdu68ZgIYrlW6JCHJwrr13yA',
-    authDomain: 'musicappdatabase.firebaseapp.com',
-    messagingSenderId: '1030106513519',
-    measurementId: 'G-XRN403MY8G',
+    apiKey: 'AIzaSyC9ih3VRwZUkhsrgl9k0FTmqmennEQRpAE',
+    authDomain: 'databasemusicapp.firebaseapp.com',
+    messagingSenderId: '461205208850',
+    measurementId: 'G-1V01B5S01Q',
   },
   production: false
 };

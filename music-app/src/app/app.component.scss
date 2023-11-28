@@ -1,0 +1,92 @@
+.gird-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    row-gap: 15px;
+}
+
+.gird-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 16px;
+}
+
+.heading4 {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.gird-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 12px;
+}
+
+.container {
+    padding-left: 14px;
+    padding-right: 14px;
+}
+
+ion-button {
+    --background: #ED1173;
+}
+
+.choice {
+    background: #9988CB;
+    border-radius: 8px;
+}
+
+.main-container-app {
+    background: url(../assets/img/background-app.jpg) no-repeat center/cover;
+    height: 100%;
+    padding-top: 24px;
+    padding-bottom: 46px;
+}
+
+.Subtitle2 {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    margin: 0;
+}
+
+.Caption {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    margin: 0;
+}
+
+.control-music {
+    column-gap: 24px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.infor-music {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+ion-range {
+    --bar-background: #FEFEFF;
+    --bar-background-active: #7F6ABE;
+    --bar-height: 2px;
+    --bar-border-radius: 8px;
+    --knob-background: #7F6ABE;
+    --knob-size: 12px;
+    --pin-background: #7F6ABE;
+    --pin-color: #7F6ABE;
+}
+
+.hidden-modal {
+    display: none;
+}

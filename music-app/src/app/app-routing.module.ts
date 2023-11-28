@@ -4,16 +4,20 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'start',
     pathMatch: 'full'
   },
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'start',
+    loadChildren: () => import('./start/start.module').then( m => m.StartPageModule)
   },
   {
     path: 'forgot-password',
@@ -24,17 +28,17 @@ const routes: Routes = [
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
   },
   {
-    path: 'start',
-    loadChildren: () => import('./start/start.module').then( m => m.StartPageModule)
-  },
-  {
     path: 'discover',
     loadChildren: () => import('./discover/discover.module').then( m => m.DiscoverPageModule)
   },
   {
     path: 'playlist',
     loadChildren: () => import('./playlist/playlist.module').then( m => m.PlaylistPageModule)
+  },  {
+    path: 'recent',
+    loadChildren: () => import('./recent/recent.module').then( m => m.RecentPageModule)
   },
+
 ];
 
 @NgModule({
