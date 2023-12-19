@@ -35,15 +35,14 @@ export class DiscoverPage implements OnInit {
     for (let index = 0; index < data.length; index++) {
       this.imgAlbums.push(data[index]);
     }
-    console.log(this.imgAlbums)
-    // console.log(data)
+
   }
   async GetDataNamesAlbums() {
     const data = await this.apiservice.GetDataNamesAlbums()
     for (let index = 0; index < data.length; index++) {
       this.nameAlbums.push(data[index]);
     }
-    console.log(this.nameAlbums)
+
   }
   async GetImgSinger(){
     const data = await this.apiservice.GetDataImgSinger()

@@ -60,11 +60,7 @@ export class PlaylistPage implements OnInit {
 
   constructor(private apiservice: ApiService,private modalController: ModalController) { }
 
-  Test(index:number){
-    // this.nameSong[index]=this.nameSongUni
-    // this.urlMp3[index]=this.urlmp3SongUni
-    // this.imgSongUni[index]=this.imgSongUni
-  }
+
   async presentModal() {
     const modal = await this.modalController.create({
       component: PlaylistPage,
@@ -83,8 +79,6 @@ export class PlaylistPage implements OnInit {
     await Promise.all([this.CreateFunc()])
       .then(() => this.RunCreateCard());
     await this.GetAllData()
-
-
   }
 
   TakeNameAlbums(index:number){
@@ -93,9 +87,7 @@ export class PlaylistPage implements OnInit {
     const song = this.getSongsByAlbumTitle(this.dataAll,nameAlbum)
     this.songsOfAlbums = song
     this.showModalFirst = true
-    console.log(nameAlbum)
-    console.log(dataAlbums)
-    console.log(song)
+
   }
 // Lấy Nhạc theo tên albums
   getSongsByAlbumTitle(artistData: any, albumTitle: any): any[] | null {
@@ -168,8 +160,6 @@ export class PlaylistPage implements OnInit {
     this.showModal = true
     const datane = this.cardsMusic[index]
     this.urlmp3SongUni = datane.urlmp3
-    console.log(this.urlmp3SongUni)
-    console.log(datane)
     // this.imgSongUni[index]=this.imgSongUni
     if (this.player) {
       this.player.stop();
