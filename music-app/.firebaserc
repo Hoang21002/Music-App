@@ -1,12 +1,5 @@
 {
   "targets": {
-    "musicappdatabase": {
-      "hosting": {
-        "app": [
-          "musicappdatabase"
-        ]
-      }
-    },
     "databasemusicapp": {
       "hosting": {
         "app": [
